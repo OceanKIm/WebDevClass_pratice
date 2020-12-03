@@ -19,7 +19,8 @@
 	<c:if test="${param.i_board == 0}">
 		<h3>글작성</h3>
 	</c:if>
-	<form action="/p2/bRegMod" method="post" id="frm" onsubmit="return chk();">
+	<div style="color:red;">${msg}</div>
+	<form action="/p3/bRegMod" method="post" id="frm" onsubmit="return chk();">
 		<div>
 			<input type="hidden" name="i_board" value="${param.i_board}">
 		</div>
@@ -42,8 +43,9 @@
 	</form>
 	<script>
 		function chk() {
-			console.log('chk() called.');
+			console.log('chk() called!');
 			var frm = document.querySelector('#frm');
+			console.log('i_board = ' + frm.i_board.value);
 			if (frm.title.value == '') {
 				alert('제목을 입력하세요.');
 				frm.title.focus();
@@ -54,7 +56,7 @@
 				return false;
 			}
 		}
-	</script>	
+	</script>
 </body>
 </html>
 
