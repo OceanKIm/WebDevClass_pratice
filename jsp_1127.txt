@@ -1,0 +1,23 @@
+String path 경로 무조건 = /WEB-INF 부터 !! '/' 반드시!
+
+// crud 한번 더 해보는 시간..
+
+// 등록이랑 수정 하나의 ser로 만들어 보기!!
+// RegMod
+
+// 중요!
+// c:forEach
+// c:if
+
+// ${param.i_board} <-- 쿼리스트링의 키값을 가져올 때!!
+
+// maria db 설치
+root : koreait2020
+
+// TCP port 3308
+
+신규
+
+JavaWebDevClass
+
+설정

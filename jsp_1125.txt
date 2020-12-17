@@ -1,0 +1,9 @@
+- sendRedirect 특징 공부.
+- getRequestDispatcher와이 차이 공부
+
+// 삭제 get 방식 처리
+
+// 클라이언트 데이터 받을 때 주의
+// client에서 서버로 날아온 것은 무조건 getParamiter 이다! 명심.
+
+// 인덱스로 삭제하는 메소드 한번 구현해보기

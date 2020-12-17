@@ -1,0 +1,24 @@
+// 반 옮기기
+-- WebDevClass_7  
+-- 포트 : 3306
+-- root : koreait2020
+
+// 에러경험
+current use ... 해당 에러는 동일한 이름의 ser파일의 경로 참조 때문에 어디를 찾아 갈지 몰라 나오는 에러!
+
+// 특별한 select....
+// select -> 무조건 con, ps, rs 3개 객체를 사용해야함!!
+// select -> 무조건 ps.executeQuery() 사용!! why? return 값이 ResultSet 이다!!!
+
+// rs.next() -> return : boolean 값...
+
+// git hub 연결하는 방법, 사용하는 방법 익히기...
+// 내 깃허브 아이디 비번
+email : gotmd37@naver.com
+id : OceanKim
+pw : gotmd!1!1
+
+
+// 게임회사 서버가 돈이 많이 드는 이유.... 꼭 서버 끄기
+
+https://hyeonstorage.tistory.com/111

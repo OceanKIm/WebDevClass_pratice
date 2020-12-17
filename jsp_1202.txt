@@ -1,0 +1,42 @@
+// 유익한 블로그
+https://hyeonstorage.tistory.com/111
+
+// 정리해보기
+Connection - db와의 직접적인 연결 매체, sql을 사용하는 preparedstatement 객체 생성
+preparedstatement  - 쿼리 실행 담당, 쿼리와 실행과 관련된 메소드를 가짐.
+ResultSet - 테이블을 담을 수 있는 객체. 테이블에 있는 필드에 접근하고 가져오는 메소드로 구성 (select 에선 필수!)
+
+// insBoard 에서 아니 ps.excuteUpdate에서 리턴값 인트, 즉 int result의 사용용도가 뭘까? 
+
+// param , setAtribut에서 절대로 "키" 값으로 주면 안됨. 이미 예약어.
+
+// 중요!!
+// executeUpdate() 메소드 리턴값 -> '쿼리 결과의 영향을 받은 행' int 값이 리턴됨.
+// practice 프로젝트에 전부 result 넣기!!
+
+// URL = "jdbc:mysql://localhost:3306/board_1?serverTimezone=UTC" --> db이름 넣기 not a table
+
+// 조회수 만들때 쿼리 문 update views = view + 1; !
+
+// result = 0; 실패할 경우 -> msg 처리. ex) 100자 이상 제목 등록
+
+// 글 등록 떄 i_board => pk 값도 보이게 해보기
+
+// 실패했을떄 즉, 100자 넘는 글을 넣었을 때, 그것을 그대로 유지하는 코딩 작성해보기..
+
+// 삭제 실패하였을 때도 코딩 처리!!
+http://localhost:8090/v3/bDel?i_board=555 -> 삭제실패하였습니다. 뜨게 하기..
+
+
+// 자바 스크립트!!
+<script>
+	<c:if test="${msg != null}">
+		alert('${msg}');
+	</c:if>
+</script>
+
+// 글 등록에서 입력이 하나도 없으면 post가 안날라가게 하기!
+// 스크립트는 보통 제일 밑에 작성. element가 전부 출력되고 나중에 하기 위해
+
+// on -> 뭔가 이벤트가 발생!!
+// onsubmit 에서 return false면 무조건 post 안날아감.

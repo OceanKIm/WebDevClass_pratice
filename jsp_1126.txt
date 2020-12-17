@@ -1,0 +1,11 @@
+// form 태그 -> type="data" 날짜 설정 보기
+
+// utf-8 설정 한방에 하기
+//https://limeeyojung.tistory.com/24
+
+// vo.setI_board(list.size()+1);  -> 이런 식으로 글 번호 설정 가능.
+
+// 쿼리 스트링 key=value 에 절대 띄어 쓰면 안됌
+// ' '문자열 인식.
+
+// forEach에서 list 순회시 remove 문제!!

@@ -1,0 +1,47 @@
+// 학원 오면 할일.
+ 1. 톰캣 및 jar 확인!!
+ 2. DB connector board_1로 변경!!
+ 3. 비밀번호 koreait2020로 변경!!
+ 4. list order by i_board desc 로 변경!!
+
+// rs = ps.getGeneratedKeys(); 기억!
+
+// 정수 값앞에 0x는 16 진수.
+
+// Statement.RETURN_GENERATED_KEYS -> static final int
+
+// dao 매개변수에는 final을 주자.
+
+// 조회수 컬럼명을 hit로 하자.
+// 1. 툴로 테이블 구조를 변경.
+// 2. 쿼리로 테이블 구조를 변경.
+// hits -> views, views -> hits
+
+// alter table 문법.
+// 집에서가서 views를 hits로 바꾸기
+// 컬럼 추가
+	-> alter table table_name add column hits int unsigned not null default 0;
+// 컬럼 명 변경? 
+	-> alter table table_name change views hits int;
+
+// 글을 수정하면 i_board가 업데이트 되는 현상.
+// 수정이 글을 등록하는 걸로 됨...   -> 해결. form 태그 밖에서 글번호 보이게 하기!
+
+// 새로고침해서 조회수 올라가는 것 막아야함. -> 어플리케이션(공용) 이용.
+// request respons, session, appilcation -> 역할 다시 공부
+// jsp requset client ip 얻어오기.
+https://blog.naver.com/kkson50/220388156585
+
+// service 안 detail 에 처리
+		String key = String.format("b_%d_%d", param.getTyp(), param.getI_board());
+		
+		ServletContext application = request.getServletContext();
+		String savedIp = (String)application.getAttribute(key);
+		
+		if (!ip.equals(savedIp)) {
+			application.setAttribute(key, ip);
+			BoardDAO.addViews(param);
+		}
+
+
+// 내일은 페이징!
