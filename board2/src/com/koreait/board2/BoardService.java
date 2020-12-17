@@ -2,6 +2,7 @@ package com.koreait.board2;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -116,8 +117,16 @@ public class BoardService {
 		});
 	}
 	
-	public static List<BoardCmtVO> selBoardCmtList (BoardVO param) {
-		return BoardDAO.selBoardCmtList(param);
+	public static List<BoardCmtVO> selBoardCmtList (BoardVO param, int showCmt) {
+		List<BoardCmtVO> list_sub = BoardDAO.selBoardCmtList(param);
+		List<BoardCmtVO> list = new ArrayList<BoardCmtVO>();
+		if (showCmt < list_sub.size()) {
+			for (int i = 0; i < showCmt; i++) {
+				list.add(list_sub.get(i));
+			}
+			return list;
+		}
+		return list_sub;
 	}
 	
 	// 공감 비공감.	
@@ -143,7 +152,6 @@ public class BoardService {
 		}
 		return 0;
 	}
-	
 	
 	
 	// 폐기예정

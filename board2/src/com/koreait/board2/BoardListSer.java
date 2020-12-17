@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.koreait.board2.common.Paging;
 import com.koreait.board2.common.Utils;
 import com.koreait.board2.db.BoardDAO;
 import com.koreait.board2.model.BoardVO;
@@ -42,41 +43,15 @@ public class BoardListSer extends HttpServlet {
 		BoardVO param = new BoardVO();
 		param.setTyp(typ);
 		param.setGetRowCntPerPage(5);;	// 페이지 갯수 설정
-		pageEnd = BoardService.selPageCnt(param);
-		System.out.println("endPage = " + pageEnd);
-		
-		// 고민해 보기.. !!
-		String pageMove = request.getParameter("pageMove");
-		System.out.println("pageMove : " + pageMove);
-		if (pageMove != null) {
-			switch (pageMove) {
-			case "up":
-				if (pageCnt > (pageEnd - setPageMove)) {
-					pageCnt = (pageEnd - setPageMove) + (pageEnd % setPageMove);
-				} else {
-					pageBegin += setPageMove;
-					pageCnt += setPageMove;
-				}
-				break;
-			case "down":
-				if (pageBegin == 1) {
-					page = 1;
-				} else {
-					pageBegin -= setPageMove;
-					pageCnt -=setPageMove;
-				}
-				break;
-			}
-		}
 
+	
+		String move = request.getParameter("pageMove");
+		Paging pg = Paging.getInstance(BoardService.selPageCnt(param), 5);
+		pg.pageMoving(move);
 		
-		
-		
-
-
-		request.setAttribute("pageBegin", pageBegin);
-		request.setAttribute("pageEnd", pageEnd);
-		request.setAttribute("pageCnt", pageCnt);
+		request.setAttribute("pageBegin", pg.begin());
+		request.setAttribute("pageEnd", pg.end());
+		request.setAttribute("boundary", pg.boundary());
 		request.setAttribute("typ", typ);
 		request.setAttribute("data", BoardService.selBoardList(param, page));
 		Utils.forward("리스트", "bList", request, response);

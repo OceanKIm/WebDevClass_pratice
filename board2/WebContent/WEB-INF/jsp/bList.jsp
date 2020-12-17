@@ -37,12 +37,12 @@
 	<div class="pageContainer">
 		<a href="/bList?typ=${typ}&page=1&pageMove=first">◀</a>
 		<a href="/bList?typ=${typ}&page=${pageBegin}&pageMove=down">◁</a>
-		<c:forEach begin="${pageBegin}" end="${pageCnt}" var="i">
+		<c:forEach begin="${pageBegin}" end="${boundary}" var="i">
 			<span class="page">
 				<a href="/bList?typ=${typ}&page=${i}">${i}</a>
 			</span>
 		</c:forEach>
-		<a href="/bList?typ=${typ}&page=${pageCnt + 1}&pageMove=up">▷</a>
+		<a href="/bList?typ=${typ}&page=${boundary + 1}&pageMove=up">▷</a>
 		<a href="/bList?typ=${typ}&page=${pageEnd}&pageMove=last">▶</a>
 	</div>
 </div>

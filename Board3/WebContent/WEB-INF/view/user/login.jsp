@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,5 +19,10 @@
 	<div>
 		<a href="/join">go to join</a>
 	</div>
+	<script>
+		<c:if test="${msg != null}">
+			alert('${msg}');
+		</c:if>
+	</script>
 </body>
 </html>

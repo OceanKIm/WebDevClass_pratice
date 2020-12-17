@@ -13,7 +13,7 @@ import com.koreait.board2.model.BoardVO;
 
 public class BoardDAO {
 
-	// 페이징 갯수 리턴
+	// 총 페이지 갯수 리턴
 	public static int selPageCnt(final BoardVO param) {
 		Connection con = null;
 		PreparedStatement ps = null;

@@ -55,13 +55,14 @@
 						<td>${item.i_cmt}</td>
 						<td>${item.ctnt}</td>
 						<td>${item.r_dt}</td>
-						<td><a href="/cmt?typ=${param.typ}&i_board=${param.i_board}&i_cmt=${item.i_cmt}&emp=yes">
+						<td><a href="/cmt?typ=${param.typ}&i_board=${param.i_board}&i_cmt=${item.i_cmt}&emp=yes&showCmt=${showCmt}">
 						${item.emp}</a></td>
-						<td><a href="/cmt?typ=${param.typ}&i_board=${param.i_board}&i_cmt=${item.i_cmt}&emp=no">
+						<td><a href="/cmt?typ=${param.typ}&i_board=${param.i_board}&i_cmt=${item.i_cmt}&emp=no&showCmt=${showCmt}">
 						${item.unemp}</a></td>
 					</tr>
 				</c:forEach>
 			</table>
+			<a href="/bDetail?i_board=${data.i_board}&typ=${data.typ}&showCmt=${showCmt + 10}"><button>댓글더보기</button></a>
 		</div>
 	</div>
 	<script>

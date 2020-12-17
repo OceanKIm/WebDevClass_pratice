@@ -21,6 +21,7 @@ public class BoardCmtSer extends HttpServlet {
 		int typ = Utils.parsInt(request, "typ");	// 0
 		int i_board = Utils.parsInt(request, "i_board");	// 0
 		int i_cmt = Utils.parsInt(request, "i_cmt");
+		int showCmt = Utils.parsInt(request, "showCmt");
 		String emp = request.getParameter("emp");
 		BoardCmtVO param = new BoardCmtVO();
 		param.setTyp(typ);
@@ -37,7 +38,7 @@ public class BoardCmtSer extends HttpServlet {
 		if (BoardService.empOrUnemp(param, request) == 0) {
 			err = "&err=2";
 		}
-		response.sendRedirect("/bDetail?typ=" + typ + "&i_board=" + i_board + err);
+		response.sendRedirect("/bDetail?typ=" + typ + "&i_board=" + i_board + err + "&showCmt=" + showCmt);
 	}
 
 

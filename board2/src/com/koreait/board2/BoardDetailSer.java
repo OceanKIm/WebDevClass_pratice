@@ -22,6 +22,7 @@ public class BoardDetailSer extends HttpServlet {
 		int typ = Utils.parsInt(request, "typ"); 	// 0
 		int i_board = Utils.parsInt(request, "i_board");	// 0
 		int err = Utils.parsInt(request, "err");
+		int showCmt = Utils.parsInt(request, "showCmt", 10);	// default 10
 		if (err > 0) {
 			switch (err) {
 			case 1:
@@ -41,11 +42,12 @@ public class BoardDetailSer extends HttpServlet {
 		param.setI_board(i_board);
 		param.setTyp(typ);
 		
-		List<BoardCmtVO> list = BoardService.selBoardCmtList(param);
+		List<BoardCmtVO> list = BoardService.selBoardCmtList(param, showCmt);
 		BoardVO vo = BoardService.detail(param, request);
 		
 		request.setAttribute("cmtList", list);
 		request.setAttribute("data", vo);
+		request.setAttribute("showCmt", showCmt);
 		Utils.forward("디테일", "bDetail", request, response);
 	}
 
