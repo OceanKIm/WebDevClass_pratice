@@ -16,7 +16,8 @@ public class UserDAO extends CommonDAO {
 		ResultSet rs = null;
 		UserModel vo = null;
 		
-		String sql = " select i_user, nm, user_pw, salt from t_user "
+		// 연습 수정
+		String sql = " select i_user, nm, user_id, user_pw, salt from t_user "
 				+ " where user_id = ? ";
 		
 		try {
@@ -28,6 +29,7 @@ public class UserDAO extends CommonDAO {
 				vo = new UserModel();
 				vo.setI_user(rs.getInt("i_user"));
 				vo.setNm(rs.getNString("nm"));
+				vo.setUser_id(rs.getNString("user_id"));
 				vo.setUser_pw(rs.getNString("user_pw"));
 				vo.setSalt(rs.getNString("salt"));
 				return vo;

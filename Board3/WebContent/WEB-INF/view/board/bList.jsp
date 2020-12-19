@@ -39,7 +39,7 @@
 	<div class="pageContainer">
 		<c:forEach begin="1" end="${pageCnt}" var="i">
 			<span class="page">
-				<a href="list?typ=${typ}&page=${i}">${i}</a>
+				<a href="list?typ=${param.typ}&page=${i}">${i}</a>
 			</span>
 		</c:forEach>
 	</div>

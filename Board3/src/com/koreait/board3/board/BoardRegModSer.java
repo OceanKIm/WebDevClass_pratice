@@ -31,11 +31,15 @@ public class BoardRegModSer extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String typ = request.getParameter("typ");
+		int i_board = Utils.parsInt(request, "i_board");
 		
 		// 반환형이 int임
 		int result = BoardService.regmod(request);
-		
-		response.sendRedirect("list?typ=" + typ);
+		if (result == 0) {
+			response.sendRedirect("list?typ=" + typ);
+			return;
+		}
+		response.sendRedirect("detail?typ=" + typ + "&i_board=" + i_board);
 	}
 
 }

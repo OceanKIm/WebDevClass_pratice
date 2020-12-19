@@ -3,6 +3,7 @@ package com.koreait.board3.board;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -21,17 +22,38 @@ public class BoardService {
 		BoardPARAM p = new BoardPARAM();
 		p.setI_board(i_board);
 		
+		// 연습 조회수 처리. - 조회수 중복 처리, 아이디별로 application에서 중복처리.
+		ServletContext appliction = request.getServletContext();
+		String userId = SecurityUtils.getLoginUser(request).getUser_id();
+		String savedUerHits = (String) appliction.getAttribute(userId);
+		
+		if (!String.valueOf(i_board).equals(savedUerHits)) {
+			System.out.println("조회수 up!");
+			appliction.setAttribute(userId, String.valueOf(i_board));
+			addHits(p);
+		}
+		
 		BoardSEL vo = BoardDAO.selBoard(p);
 		if (vo == null) {
 			// 에러 처리;
 		}
+	
 		request.setAttribute("data", vo);
 	}
 	
 	public static void selBoardList(HttpServletRequest request) {
 		int typ = Utils.parsInt(request, "typ");	// 0
+		// 연습 - 페이징
+		int page = Utils.parsInt(request, "page", 1);
+		
 		BoardPARAM p = new BoardPARAM();
 		p.setTyp(typ);
+		p.setGetRowCntPerPage(5); // 연습 - 페이징
+		p.setS_IDx((page - 1) * p.getGetRowCntPerPage()); // 연습 - 페이징
+		System.out.println("sidx = " + p.getS_IDx());
+		
+		// 연습
+		request.setAttribute("pageCnt", BoardDAO.selPageCnt(p));
 		request.setAttribute("data", BoardDAO.selBoardList(p));
 	}
 
@@ -56,24 +78,23 @@ public class BoardService {
 					ps.setNString(2, title);
 					ps.setNString(3, ctnt);
 					ps.setInt(4, vo.getI_user());
-
 				}
 			});			
+			return 0; 	// 리스트로 이동
 		} else {	// 글수정 (연습)
-//			String sql = " update t_board "
-//					+ " set title = ?, ctnt = ?, m_dt = now() "
-//					+ " where i_board = ? ";
-//			CommonDAO.executeUpdate(sql, new SQLInterUpdate() {
-//				@Override
-//				public void proc(PreparedStatement ps) throws SQLException {
-//					ps.setInt(1, x);
-//					
-//				}
-//			});
-			
-			
+			String sql = " update t_board "
+					+ " set title = ?, ctnt = ?, m_dt = now() "
+					+ " where i_board = ? ";
+			CommonDAO.executeUpdate(sql, new SQLInterUpdate() {
+				@Override
+				public void proc(PreparedStatement ps) throws SQLException {
+					ps.setNString(1, title);
+					ps.setNString(2, ctnt);
+					ps.setInt(3, i_board);	
+				}
+			});	
+			return 1; // 디테일로 이동
 		}
-		return 0;
 	}
 	
 	public static void del(HttpServletRequest request) {
@@ -89,6 +110,19 @@ public class BoardService {
 			}
 		});
 		
+	}
+	
+	// 연습 조회수 처리
+	public static void addHits(BoardPARAM p) {
+		String sql = " update t_board "
+				+ " set hits = hits + 1 "
+				+ " where i_board = ? ";
+		CommonDAO.executeUpdate(sql, new SQLInterUpdate() {
+			@Override
+			public void proc(PreparedStatement ps) throws SQLException {
+				ps.setInt(1, p.getI_board());
+			}
+		});
 	}
 	
 
