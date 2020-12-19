@@ -5,15 +5,17 @@ import java.sql.SQLException;
 import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.koreait.board3.common.SecurityUtils;
 import com.koreait.board3.common.Utils;
 import com.koreait.board3.db.SQLInterUpdate;
 import com.koreait.board3.db.UserDAO;
 import com.koreait.board3.model.UserModel;
+import com.sun.net.httpserver.HttpContext;
 
 public class UserService {
-	
+
 	// 회원가입
 	public static int join(HttpServletRequest request) {
 		String user_id = request.getParameter("user_id");
@@ -57,8 +59,22 @@ public class UserService {
 		UserModel p = new UserModel();
 		p.setUser_id(user_id);
 		p.setUser_pw(user_pw);
-	
-		return UserDAO.login(p);
+		
+		UserModel vo = UserDAO.selUser(p);
+		if(vo == null) {
+			// 아이디 없음
+			return 2;
+		} 
+		String encryptPw = SecurityUtils.getSecurePassword(user_pw, vo.getSalt());
+		if (encryptPw.equals(vo.getUser_pw())) {
+			// 로그인 성공시 세션에 로그인 정보 박아버리고 pw, salt 값 초기화.
+			HttpSession hs = request.getSession();
+			hs.setAttribute("loginUser", vo);
+			vo.setUser_pw(null);
+			vo.setSalt(null);
+			return 1;
+		}
+		return 3;
 	}
 
 	

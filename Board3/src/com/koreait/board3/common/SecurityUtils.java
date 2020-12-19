@@ -5,10 +5,30 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.tomcat.util.codec.binary.Base64;
 
-// 내일 따로 공부해보기.
+import com.koreait.board3.model.UserModel;
+
+
 public class SecurityUtils {
+	
+	//true: 로그아웃 상태, false: 로그인 상태
+	public static boolean isLogin(HttpServletRequest request) {
+		return getLoginUser(request) != null;
+	}
+	
+	public static UserModel getLoginUser(HttpServletRequest request) {
+		HttpSession hs = request.getSession();
+		return (UserModel)hs.getAttribute("loginUser");
+	}
+	
+	public static int getLoginUserPk(HttpServletRequest request) {
+		return getLoginUser(request).getI_user();
+	}
+
 	public static String getSecurePassword(String password, String salt) {
 
         String generatedPassword = null;
