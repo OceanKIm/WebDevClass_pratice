@@ -1,0 +1,72 @@
+// required로 대체, 남은 소스는 욕검사 사용.
+
+// 글등록 -> 작성자 이름 추가. 
+// 사용자 객체 정보 불러오기 securitUtil에 추가.
+
+SELECT 1, ifnull(max(seq), 0) + 1, '제목', '내용' , 1
+FROM t_board
+WHERE typ = 1;
+ -> max로 줘서 일부러 seq를 null를 만들지 않고? 만들고? 값 넣을 수 있음.
+ -> 그리고 널이라면 seq에 +1 씩 글번호 만들어줌.
+ -> 첫 글번호는 1로 고정.
+
+-> 이 값들이 . 
+insert into t_board (typ, seq, title, ctnt, i_user) 에 순서대로 들어가게함.
+SELECT '1', max(seq) + 1  , 'title', 'ctnt', '1' FROM t_board WHERE typ = 1;  -- 이런식으로 새로운 값을 넣어줌.
+
+// select 다음에 컬럼명을 적을 수도 있지만 값을 넣어줘서 그대로 values에 들어가게 할 수 있다.
+
+// ifnull -> 단순이 첫글이 0일때 첫글 1로 고정해서 넣는 용도
+// 만약 max()를 주지 않게 되면 기존에 있는 여러 테이블의 갯수만큼 중복되서 테이블에 들어감.
+
+// 집에서 test 해보기
+SELECT '1', seq + 1  , 'title', 'ctnt', '1' FROM t_board WHERE typ = 1;  -> 무슨 대참사가 일어나는지...
+
+// 그룹함수에 대한 공부 ex) max, min, avg, count
+
+// 추가적인 mysql 조건문 공부
+http://www.spatium.co.kr/languages/content.php?chno=5&bno=34
+
+// select로 여러값 주는 것 생각보다 많이 쓰임.
+ -> select 값 and 집계함수 없는 select 문. // 위의 대참사 경우
+
+// 간단하게 테이블을 복사(백업) 할 수 있음.
+CREATE TABLE t_board_temp AS
+SELECT * FROM t_board;
+ -> 단 제약조건 안 걸림.
+
+// 리스트 뿌려주기.
+
+// i_user 번호로 사용자 이름 참조. why? 만약 이름 바꾼다면..
+// i_user로 join 걸어서 mn을 가져올 것임.
+
+// nosql에 대한 작은 공부.
+// DB정규화에 대한 공부.
+
+// BoardSEL model 이용, 기존 t_board에서 t_user 정보까지 같이 던지기 위해.
+
+난 join 이렇게 걸었음.
+SELECT A.i_board, A.seq, A.title, A.r_dt, A.m_dt, A.hits, A.i_user, B.nm
+FROM t_board A, t_user B
+WHERE A.i_user = B.i_user AND A.typ = 1 
+ORDER BY A.seq desc;
+
+// 하지만 강사님은 inner join...
+SELECT A.i_board, A.typ, A.title, A.r_dt, A.m_dt, A.hits, A.i_user, B.nm
+FROM t_board A
+INNER JOIN t_user B
+ON A.i_user = B.i_user
+WHERE A.typ = 1
+ORDER BY A.seq DESC;
+
+// BoardPARAM 따로 만들기, 나중에 페이징 처리때도 이용할 껴
+
+// detail에서 굳이 typ값 필요 없음.
+
+// 연결 안 되는 문제
+function clkArticle(i_board) {
+	var url = `detail?i_board=${i_board}`;
+	console.log(url);
+	location.href = url; 
+}
+

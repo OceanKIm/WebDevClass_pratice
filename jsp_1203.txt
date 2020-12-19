@@ -1,0 +1,63 @@
+// db에서 data값 받기 할때 rs.getNString() -> 에러 ... can not call .. utf-8 머시기.
+// input type에서 text로 보여지는데 수정은 불가능한 거 알아보기.. readonly
+
+nature - tido kang
+
+// result 처리 할 것들 -> insBoard, delBoard, upBoard : 각 메소드마다 에러처리 하면 됨.
+
+// boardDel에서 에러나는 경우는 뭘까?
+// executeUpdate() 메소드 없어도 쿼리 실행 가능.
+
+// 오늘은 자바스크립트. -> 클라이언트 브라우져에서 실행. (not in server)
+// 소스...
+		function chk() {
+			console.log('chk() called');
+			var frm = document.querySelector('#frm');
+			// frm.name.value 로 데이터 접근.
+			console.log(frm.i_board.value);
+			if(frm.title.value == '') {
+				alert('제목을 입력해 주세요.');
+				frm.title.focus();	// 포커스 가리키기!
+				return false;	// 무조건 submit이 안됌.
+			} else if (frm.ctnt.value == '') {
+				alert('내용을 입력해 주세요.');
+				frm.ctnt.focus();
+				return false;
+			}
+		}
+		// 그냥 예시
+		function ddd() {
+			console.log('ddd called');
+		}
+
+
+
+// 객체 밖의 메소드 -> 함수 (자바스크립트의 특징)
+
+// 노드 <document tree> and 요소노드의 개념 
+
+// children[0].children[1].children[0].children[1] ... -> querySelector없으면 이런식...
+// document.getElementById('frm'); -> 이것도 이젠 안씀
+
+// onsubmit -> 이벤트 처리 (from에만 있는 atribute)
+
+// 다양한 이벤트
+// onclick 등 매우 많음...
+
+// 쌍따옴, 홋따옴 구분.
+// html = "문자열", 자바 스크립트 = '문자열' -> 파이썬이랑 비슷...
+// database = '문자열'
+
+tip -> 문자열 안에서 문자로 표시 안되는 거의 왠만한 것들은 \붙이면 다 됨.
+
+// 자바스크립트에서 반환형의 개념...??
+
+// 새로운 프로젝트 -> 게시판이 늘고, 메뉴가 생김.
+
+// ajax 통신. -> 매우 중요!
+
+
+
+
+
+

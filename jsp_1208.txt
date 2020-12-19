@@ -1,0 +1,52 @@
+// 학원 수업 전에 처리 할 것.
+1. 글 등록에 <h3>게임게시판등록</h3> 같이 처리하기.
+2. 글삭제 에러 처리 - 리스트에서 alert 주기.
+3. order by i_board desc 에러 처리
+
+
+//  templete페이지에서 다른 jsp파일을 include하기 때문에
+//  body태그 밖의 부분은 제외시켜 줘야함!!
+
+// https://poiemaweb.com/es6-template-literals -> 템플릿 리터럴
+
+// 강사님의 detail page....  크흠,,
+	<form action="/bDetail" method="post">
+		<input type="hidden" name="typ" value="${data.typ}">
+		<input type="hidden" name="i_board" value="${data.i_board}">
+		<input type="submit" value="삭제">
+	</form>
+ -> post는 이렇게 보내는 것이 FM 입니다..
+
+// 간단한 로그인 기능 구현해봄.
+// 회원가입 구현시 주의 할 것.
+1. 비밀번호 중복 검사
+2. 아이디 중복 검사.
+3. 아이디 무결성 검사.
+4. 비밀번호 무결성 검사.
+5. 데이터 타입 지정 등.
+
+// <input type="submit" value="글삭제" onclick="return isDel();">  
+	function isDel() {
+		var result = confirm('삭제 하시겠습니까?');
+		if(!result) {
+			return false;
+		}
+	}
+-> 잘됨.. (원래는 form에 onsubmit으로 처리 해야하는 것임. )
+// retrun 에서 false가 아닌 이상 무조건 submit이 들어감! (어이없는 자바스크립트)
+
+// preventDefault() 자바스크립트 메서드
+
+// 나중에 DAO 메서드들을 콜백 형식으로 만들 것임.
+
+// block 태그인 폼을 버튼 일렬로 만들기.
+
+
+response.sendRedirect("/bDetail?typ=" + typ + "&i_board=" + param.getI_board());
+
+//jsp preparedstatement insert get primary key -> 검색방식.
+
+// insert 해도 안전하게 pk값 가져 오는 방법.
+
+// 내일은 조회수
+페이징, 검색 등 할 예정

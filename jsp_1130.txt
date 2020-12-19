@@ -1,0 +1,32 @@
+// jsp 좋은 글 <지금 봐라...>
+https://programmingsummaries.tistory.com/83
+
+// getParameter("i") 로 받은 값들은 다시 페이지를 뿌릴때
+// param.i 로 다시 값을 가져올 수 있다. 
+
+// <c:if> <당장 봐라...>
+https://offbyone.tistory.com/367
+
+-- 기본적인 crud sql 문법
+
+-- 이클립스 디비 적용
+jdbc mysql driver  connector
+
+-- jar 파일 톰캣에 복사
+                       
+//jsp 연동 블로그 검색
+//https://hees-dev.tistory.com/7
+
+// DbUtils 만들기
+-- Connection
+-- PreparedStatement
+- Resultset
+-> 각 클래스들의 역할 공부해보기.
+
+// Connection 클래스는 소스를 매우 많이 먹으므로 닫아주는 메소드 작성
+반드시 con -> ps -> rs 순으로 열고
+rs -> ps -> con 순으로 닫아야 한다.
+
+// class Class 에 대한 공부.
+
+// rs.next()에 대한 공부

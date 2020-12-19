@@ -1,0 +1,55 @@
+<filter>
+<filter-name>Set Character Encoding</filter-name>
+<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+<init-param>
+<param-name>encoding</param-name>
+<param-value>UTF-8</param-value>
+</init-param> 
+</filter>
+<filter-mapping>
+<filter-name>Set Character Encoding</filter-name>
+<url-pattern>/*</url-pattern>
+</filter-mapping>
+=================== 학원 오면 xml - UTF8 설정하기.
+
+// salt DB 설정 확인하기. not null?
+
+// placeholder -> hint 같은 거임.
+
+// byte[] salt 에서 문자열 salt값 추출하기. DB에 저장하기 위함.
+
+<역할 바로 알자!>
+// vo
+// dto
+// model 
+
+// Board3 로그인 구현 다하면 연습으로 Board2에도 로그인 기능 구현해보기!
+
+// marven vs gradle -> 결론 gradle이 더 좋다.
+
+// 자바 깊은 복사, 얕은 복사 (객체복사 vs 주소복사)
+https://library1008.tistory.com/47
+
+// 댓글 도배 방지 기능.. 11일 자료 확인.
+
+// salt값 해결 방법.
+import org.apache.tomcat.util.codec.binary.Base64;
+
+// 다형성 다시 정리.
+ 1. 부모타입은 자식 객체 주솟값을 저장할 수 있다.
+ 2. 자식타입은 부모 객체 주솟값을 저장할 수 없다.
+ 3. 타입은 메소드 알고 있는 것만 호출 할 수 있다. 그리고 실제 실행되는 건 객체 기준으로 실행 된다.
+
+// 아이디 중복 처리.(아작스통신 이용) -> 일단 아이디 체크 없이, 진행
+
+// 로그인 처리
+// 0 : 에러, 1 : 성공, 2 : 아이디 없음, 3 : 비밀번호 틀림
+// 세션에 로그인 정보 박아버리기!
+// 세션에다가 로그인 상태도 확인 할 수 있음.
+
+// 내일은 로그인되고 템플릿 게시판 만들기.
+// 로그인 -> 게시판 접근 가능, 로그아웃 기능.
+// 로그아웃 -> 게시판 접근 불가능.
+https://medium.com/@ddinggu/session%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%83%81%ED%83%9C%EC%9C%A0%EC%A7%80-df31db7f1089
+https://beomi.github.io/gb-crawling/posts/2017-01-20-HowToMakeWebCrawler-With-Login.html
+

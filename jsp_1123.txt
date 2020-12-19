@@ -1,0 +1,39 @@
+jsp - 스크립트릿 /%%/
+
+// 실제로 jsp 파일이 class파일로 변환되서 저장되는 경로
+E:\코리아IT학원\웹개발1\웹개발_java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\work\Catalina\localhost\ROOT\org\apache\jsp
+
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("<html>\r\n");
+      out.write("<head>\r\n");
+      out.write("<meta charset=\"UTF-8\">\r\n");
+      out.write("<title>스크립트릿</title>\r\n");
+      out.write("</head>\r\n");
+      out.write("<body>\r\n");
+      out.write("\t<div>n1 = ");
+      out.print( n1);
+      out.write("</div>\r\n");
+      out.write("\t<div>n2 = ");
+      out.print( out.print(n1));
+      out.write("</div>\r\n");
+      out.write("\t<div>name = ocean</div>\r\n");
+      out.write("\t<div>name = ");
+      out.print( name);
+      out.write("</div>\r\n");
+      out.write("\t<div>hello = ");
+      out.print( hello() );
+      out.write("</div>\r\n");
+      out.write("\r\n");
+      out.write("</body>\r\n");
+      out.write("</html>");
+
+// 최초 jsp 개발 방식....
+
+// 실제로 jsp 파일은 webcontent 안에 만들지 않음
+// WEB-INF 안에 만듬 -> 하지만 절대 접근 불가. (보안)
+// 실무에서는 web_inf안에 만들고 sevelet으로 통해서 연다.
+
+// get - post 방식 공부
+
+// JSTL 사실상 공식 라이브러리.

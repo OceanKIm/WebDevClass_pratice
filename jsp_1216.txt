@@ -1,0 +1,99 @@
+// 에러확인.
+Uncaught SyntaxError: Unexpected token '<'   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   -> 작성안함..
+
+// 에러확인.
+java.sql.SQLIntegrityConstraintViolationException: Column 'nm' cannot be null
+
+// 연습보드에서 연습할 것.
+1. selUser만들기.
+2. UserService에서 비밀번호 확인 처리.
+3. loginChk.jsp 띄우기.
+4. session에서 로그인 정보 저장시키기.
+5. 15일 공부자료 확인!!
+
+// 로그인 에러 0번 없는 걸로.
+
+// 미션 : 비밀번호나 아이디 틀려도 적었던 id는 그대로 있는 걸로.
+// ${} : el식의 장점, null 값일땐 그냥 출력을 안함. -> 매우 유용!
+
+// 템플릿과 여러 게시판을 한 테이블로 구성!
+
+// 템플릿 jstl 활용, 자바스크립트 링크를 배열로 전달 할 예정.
+<c:forEach items="${jsList}" var="item">
+	<script defer src="/res/js/${item}.js"></script>
+</c:forEach>
+
+// main.jsp -> 로그인하면 가는 페이지
+
+// 로그인이 안되있으면 main 접근 불가 기능 추가.
+// 세션에서 key값을 가져와서 null 이면 로그아웃 상태.
+
+// hs.invalidate(); -> 세션에 있던 모든 key와 value가 다 날아감.
+// or 그냥 setAtrribute 에 키와 null 값 주기.
+
+// 정리.
+// 로그아웃 상태에서는 login, join 접근가능, main 접근불가
+// 로그인   상태에서는 login, join 접근불가, main 접근가능
+
+// 게시판 만들고 myPage 만들기 -> 회원정보 변경 가능.
+
+// 게시판 구조 이해하기!
+CREATE TABLE t_board (
+	i_board INT(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	typ INT UNSIGNED NOT NULL COMMENT '게시판 종류',
+	seq INT UNSIGNED NOT NULL COMMENT '글번호', -- 글번호는 자동생성 안됨?
+	title VARCHAR(100) NOT NULL,
+	ctnt VARCHAR(1000) NOT NULL,
+	r_dt DATETIME DEFAULT NOW(),
+	m_dt DATETIME DEFAULT NOW(),
+	hits INT(10) UNSIGNED DEFAULT '0',  		-- 조회수 10개 제한 가능?
+	i_user INT UNSIGNED COMMENT '글쓴이',
+	UNIQUE (typ, seq),  			-- 이 문법 다시 파악
+	FOREIGN KEY (i_user) REFERENCES t_user(i_user)
+);
+
+// 테이블 내용 삭제
+DELETE FROM t_board; 	-- 테이블 내용 전체 삭제
+TRUNCATE TABLE t_board; -- 같음. 하지만 더 빠름. 한방에 삭제
+
+// 오라클 페이징 안 좋은점...
+https://kdarkdev.tistory.com/272 --> 속도차이 ㄷㄷ..
+
+// 단계걸고 링크에서 '/'의 유뮤 차이점.
+// '/'를 빼야 주소 끝에만 바뀌게 됨.
+// '/'를 붙이면 그 뒤에 추가 됨...
+
+따라서 /board/bRegmod 서블릿 링크 이동 할때
+그냥 href="bRegMod?typ=${typ}" 만 해도 됨. -> 어차피 끝에만 바뀔 것임. (앞에 /를 추가하면 주솟값 뒤에 그대로 붙을 것임.)
+
+
+// 사실 모든 페이지에
+if (Utils.isLogout(request)) {
+	response.sendRedirect("/login");
+	return;
+}
+// 때려박아야함. 나중에 extends로 한방에 해결,.. but 나중에
+
+// 다시 공부할것. 자바스크립트 문법 el식과 안 헷갈리게
+	<script>
+		function clkItem(typ, i_board) {
+			var url = `/bDetail?typ=\${typ}&i_board=\${i_board}`;
+			console.log(url);
+			location.href = url; 
+		}
+	</script>
+
+개발자가 제일 힘들어 하는 일 -> 이름짓기.. 검색해보셈..
+개발자가 보면 암걸리는 영상. -> 나중에 보기.
+
+<script defer src="/res/js/join.js"></script> 링크가 많으면 많을 수록 안좋음. 느려짐.
+-> 블로그 공부해보기.
+
+// 다음 프로젝트에서는 서블릿 하나만 써 보자..
+
+// select도 나중에 inter활용해서 구현 할 수 있음. 대신 제네릭 만들어야함
+// 내일은 select에서 insert까지 넣어보기.
+
+
+

@@ -1,0 +1,90 @@
+// ps.executeUpdate(); 를 반드시 해줘야 쿼리가 실행 됨.
+https://m.blog.naver.com/PostView.nhn?blogId=javaking75&logNo=140181663618&proxyReferer=https:%2F%2Fwww.google.com%2F
+
+// 글수정할때 조회수가 두번씩 올라가는 현상.
+// 글등록하자마자 조회수 1이 올라가는 현상.
+-> 사실 뭐 ip조회로 조회수 올라가는 것을 막을 수 는 있음..
+
+
+// jsp 내장객체 정리
+1. request : HttpServletRequest
+	- 클라이언트의 요청정보를 서버측에서 사용할 때.
+
+2. response :  HttpServletResponse
+	- 서버가 클라이언트 쪽으로 응답처리 할 때 사용.
+
+3. session : HttpSession
+	- 클라이언트의 정보를 서버측에 저장할 때 사용.
+	- 저장된 정보는 브라우저 창이 사작해서 종료 할 때 까지 유지.
+	- 접속된 각각의 클라이언트 마다 생성.
+	- 기본 세션의 시간읜 30분(1800초)
+
+4. application : ServletContext
+	- 특정 정보를 서버가 시작해서 종료될 때 까지 유지되도록 함.
+
+
+
+// request.getParameterNames(); -> 쿼리스트링의 키값도 받아짐!
+
+// 세션과 쿠키의 차이점.
+https://chrisjune-13837.medium.com/web-%EC%BF%A0%ED%82%A4-%EC%84%B8%EC%85%98%EC%9D%B4%EB%9E%80-aa6bcb327582
+https://doooyeon.github.io/2018/09/10/cookie-and-session.html
+
+// 쿠키, 세션의 역할 -> 로그인, 쇼핑몰장바구니 같은 기능의 응용 분야 공부.
+
+// null 값인 String객체 메소드 사용시 null pointer Excetion 에러. 
+
+// setAttribute 는 HashMap 클래스로 구현됨.
+
+// 수진쓰 글등록 오류. (순서대로 해야 rs에 값이 담김.)
+	1. result = ps.executeUpdate();
+	2. rs = ps.getGeneratedKeys();
+
+// 페이징 처리 (5페이지 씩)
+SELECT i_board, title, ctnt, r_dt, m_dt 
+FROM t_board_1
+order BY i_board DESC
+LIMIT 0, 5; < - 고정값(limit 인덱스번호, 고정row수)
+
+0, 5 -> 5, 5 -> 10, 5 이런식..
+(page - 1) * showPageCnt 이런식으로 첫번째 인자를 생성.
+showPageCnt * page - showPageCnt -> 이렇게 해도 됨
+
+// 총 페이지수 가져오기.
+SELECT ceil(COUNT(*) / ?) as cnt 
+FROM t_board_1;
+-> dao 에서 구현
+
+// vo 에 페이지 줄수 설정하는 멤버변수 작성
+// listSer에 DAO에서 페이지 수 값 가져오고 setAttribute로 값 저장
+
+// list.jsp 에 이런 식으로 뿌려주기
+<div class="pageContainer">
+	<c:forEach begin="1" end="${pageCnt}" var="i">
+		<span class="page">
+			<a href="?bList?typ=${typ}&page=${i}">${i}</a>
+		</span>
+	</c:forEach>
+</div>
+
+
+// 지금까지의 페이징 정리.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

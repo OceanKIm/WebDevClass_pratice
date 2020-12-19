@@ -1,0 +1,19 @@
+- jsp el 식
+https://kutar37.tistory.com/entry/%EC%9E%90%EB%B0%94-EL%ED%91%9C%ED%98%84%EC%96%B8%EC%96%B4%EC%9D%98-%EA%B0%9C%EB%85%90
+
+// scope 범위 -> page 라이플 사이클 (공부 더하기)
+// page contest -> 페이지 나가면 사라짐.
+// requset -> page 보다 좀더 오래 살아 있음.
+// session -> 브라우저가 꺼질때 까지 살아있는 객체
+// application -> 단하나만 만들어짐. 공용. 서버가 꺼지 면 죽음
+
+el식은 무조건 setAributte 한것 만 사용?
+
+// jstl 라이브러리 활용
+https://atoz-develop.tistory.com/entry/JSP-JSTL-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95-%EC%A3%BC%EC%9A%94-%ED%83%9C%EA%B7%B8-%EB%AC%B8%EB%B2%95-%EC%A0%95%EB%A6%AC
+
+// jstl를 쓰기 위한 라이브러리 참조
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
+// form tag
+https://velog.io/@choiiis/HTMLCSS-form-%ED%83%9C%EA%B7%B8-%EC%A0%95%EB%A6%AC
