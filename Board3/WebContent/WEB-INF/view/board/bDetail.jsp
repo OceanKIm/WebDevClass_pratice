@@ -33,10 +33,10 @@
 	</c:if>
 	<div style="margin-top: 20px;">
 		<div>
-			<form action="/cmt" method="post">
+			<form action="cmt/reg" method="post">
 				<input type="hidden" name="typ" value="${param.typ}">
 				<input type="hidden" name="i_board" value="${data.i_board}">
-				댓글 : <input type="text" name="cmt_ctnt">
+				댓글 : <input type="text" name="ctnt">
 				<input type="submit" value="댓글쓰기">
 			</form>
 		</div>
@@ -46,22 +46,31 @@
 					<th>순번</th>
 					<th>댓글</th>
 					<th>작성일</th>		
+					<th>작성자</th>	
 					<th>공감</th>	
 					<th>비공감</th>	
+					<th>비고</th>	
 				</tr>
 				<c:forEach items="${cmtList}" var="item">
 					<tr>
-						<td>${item.i_cmt}</td>
+						<td>${item.seq}</td>
 						<td>${item.ctnt}</td>
 						<td>${item.r_dt}</td>
-						<td><a href="/cmt?typ=${param.typ}&i_board=${param.i_board}&i_cmt=${item.i_cmt}&emp=yes&showCmt=${showCmt}">
-						${item.emp}</a></td>
-						<td><a href="/cmt?typ=${param.typ}&i_board=${param.i_board}&i_cmt=${item.i_cmt}&emp=no&showCmt=${showCmt}">
-						${item.unemp}</a></td>
+						<td>${item.nm}</td>
+						<td>${item.emp}</td>
+						<td>${item.unemp}</td>
+						<td>
+							<c:if test="${item.i_user == loginUser.i_user}">
+								<a href="cmt/del?i_board=${data.i_board}&typ=${param.typ}&i_cmt=${item.i_cmt}">
+									<button>삭제</button>
+								</a>
+								<button>수정</button>								
+							</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>
-			<a href="/bDetail?i_board=${data.i_board}&typ=${data.typ}&showCmt=${showCmt + 10}"><button>댓글더보기</button></a>
+			<a href="detail?i_board=${data.i_board}&typ=${data.typ}&showCmt=${showCmt + 10}"><button>댓글더보기</button></a>
 		</div>
 	</div>
 	<script>

@@ -7,8 +7,10 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.koreait.board3.board.cmt.BoardCmtService;
 import com.koreait.board3.common.SecurityUtils;
 import com.koreait.board3.common.Utils;
+import com.koreait.board3.db.BoardDAO;
 import com.koreait.board3.db.CommonDAO;
 import com.koreait.board3.db.SQLInterUpdate;
 import com.koreait.board3.model.BoardPARAM;
@@ -17,7 +19,7 @@ import com.koreait.board3.model.UserModel;
 
 public class BoardService {
 	
-	public static void detail(HttpServletRequest request) {
+	public static BoardSEL detail(HttpServletRequest request) {
 		int i_board = Utils.parsInt(request, "i_board");
 		BoardPARAM p = new BoardPARAM();
 		p.setI_board(i_board);
@@ -37,8 +39,9 @@ public class BoardService {
 		if (vo == null) {
 			// 에러 처리;
 		}
-	
+		request.setAttribute("cmtList", BoardCmtService.selBoardCmtList(p));
 		request.setAttribute("data", vo);
+		return vo;
 	}
 	
 	public static void selBoardList(HttpServletRequest request) {
@@ -57,21 +60,23 @@ public class BoardService {
 		request.setAttribute("data", BoardDAO.selBoardList(p));
 	}
 
-	public static int regmod(HttpServletRequest request) {
+	public static String regmod(HttpServletRequest request) {
 		int i_board = Utils.parsInt(request, "i_board");
 		int typ = Utils.parsInt(request, "typ");
 		String title = request.getParameter("title");
 		String ctnt = request.getParameter("ctnt");
+		int err;
+		
 		// 나중에 시큐리티 pk에서 받기. 일단 되는지 확인.
 		HttpSession hs = request.getSession();
 		UserModel vo = (UserModel) hs.getAttribute("loginUser");
+		
 		
 		if (i_board == 0) {	// 글등록.
 			String sql = " insert into t_board (typ, seq, title, ctnt, i_user) "
 					+ " select ?, ifnull(max(seq),0) + 1, ?, ?, ? from t_board ";
 
-			CommonDAO.executeUpdate(sql, new SQLInterUpdate() {
-				
+			err = CommonDAO.executeUpdate(sql, new SQLInterUpdate() {
 				@Override
 				public void proc(PreparedStatement ps) throws SQLException {
 					ps.setInt(1, typ);
@@ -80,12 +85,13 @@ public class BoardService {
 					ps.setInt(4, vo.getI_user());
 				}
 			});			
-			return 0; 	// 리스트로 이동
+			if (err == 0) return "에러처리";
+			return String.format("list?typ=%d", typ); 	// 리스트로 이동
 		} else {	// 글수정 (연습)
 			String sql = " update t_board "
 					+ " set title = ?, ctnt = ?, m_dt = now() "
 					+ " where i_board = ? ";
-			CommonDAO.executeUpdate(sql, new SQLInterUpdate() {
+			err = CommonDAO.executeUpdate(sql, new SQLInterUpdate() {
 				@Override
 				public void proc(PreparedStatement ps) throws SQLException {
 					ps.setNString(1, title);
@@ -93,7 +99,8 @@ public class BoardService {
 					ps.setInt(3, i_board);	
 				}
 			});	
-			return 1; // 디테일로 이동
+			if (err == 0) return "에러처리";
+			return String.format("detail?typ=%d&i_board=%d", typ, i_board); // 디테일로 이동
 		}
 	}
 	

@@ -1,4 +1,4 @@
-package com.koreait.board3.board;
+package com.koreait.board3.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,11 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.koreait.board3.db.DbUtils;
 import com.koreait.board3.model.BoardPARAM;
 import com.koreait.board3.model.BoardSEL;
 
-public class BoardDAO {
+public class BoardDAO extends CommonDAO{
 	
 	public static int selPageCnt(BoardPARAM p) {
 		Connection con = null;
