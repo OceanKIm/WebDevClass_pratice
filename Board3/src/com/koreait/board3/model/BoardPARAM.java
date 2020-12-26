@@ -3,13 +3,12 @@ package com.koreait.board3.model;
 public class BoardPARAM {
 	private int i_board;
 	private int typ;
-	// 연습 - 페이징
+	private int i_user;
 	private int getRowCntPerPage;
 	private int s_IDx;
 	
 	
-	
-	// getter and setter
+
 	public int getI_board() {
 		return i_board;
 	}
@@ -22,8 +21,6 @@ public class BoardPARAM {
 	public void setTyp(int typ) {
 		this.typ = typ;
 	}
-	
-	//연습 - 페이징
 	public int getGetRowCntPerPage() {
 		return getRowCntPerPage;
 	}
@@ -35,5 +32,11 @@ public class BoardPARAM {
 	}
 	public void setS_IDx(int s_IDx) {
 		this.s_IDx = s_IDx;
+	}
+	public int getI_user() {
+		return i_user;
+	}
+	public void setI_user(int i_user) {
+		this.i_user = i_user;
 	}
 }

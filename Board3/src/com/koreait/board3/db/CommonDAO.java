@@ -2,6 +2,7 @@ package com.koreait.board3.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class CommonDAO {
 	
@@ -19,7 +20,5 @@ public class CommonDAO {
 			DbUtils.close(con, ps);
 		}
 		return 0;
-	}
-	
-	
+	}	
 }

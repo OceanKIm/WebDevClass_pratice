@@ -22,6 +22,7 @@ public class BoardService {
 	public static BoardSEL detail(HttpServletRequest request) {
 		int i_board = Utils.parsInt(request, "i_board");
 		BoardPARAM p = new BoardPARAM();
+		p.setI_user(SecurityUtils.getLoginUserPk(request));
 		p.setI_board(i_board);
 		
 		// 연습 조회수 처리. - 조회수 중복 처리, 아이디별로 application에서 중복처리.
@@ -133,8 +134,68 @@ public class BoardService {
 	}
 	
 
-	
+	// 좋아요 ajax 통신 처리
+	public static String ajaxFavorite(HttpServletRequest request) {
+		int result = 0;	// 기본 에러
+		int i_board = Utils.parsInt(request, "i_board");
+		int state = Utils.parsInt(request, "state");
+		String sql = null;
+		switch (state) {
+		case 0:	// 좋아요 해제
+			sql = " delete from t_board_favorite "
+				+ " where i_board = ? and i_user = ? ";			
+			break;
+		case 1: // 좋아요 처리
+			sql = " insert into t_board_favorite (i_board, i_user) "
+				+ " values (?, ?) ";
+			break;
+		}
+		result = BoardDAO.executeUpdate(sql, new SQLInterUpdate() {
+			@Override
+			public void proc(PreparedStatement ps) throws SQLException {
+				ps.setInt(1, i_board);
+				ps.setInt(2, SecurityUtils.getLoginUserPk(request));
+			}
+		});
+		return String.format("{\"result\":%d}", result);
+	}	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

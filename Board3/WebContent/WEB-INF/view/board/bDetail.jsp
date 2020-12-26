@@ -57,22 +57,48 @@
 						<td>${item.ctnt}</td>
 						<td>${item.r_dt}</td>
 						<td>${item.nm}</td>
-						<td>${item.emp}</td>
-						<td>${item.unemp}</td>
-						<td>
-							<c:if test="${item.i_user == loginUser.i_user}">
+						<td class="emp" id="emp_${item.i_cmt}" onclick="clkEmp(${item.i_cmt});">${item.emp}</td>
+						<td class="emp" id="unemp_${item.i_cmt}" onclick="clkUnemp(${item.i_cmt});">${item.unemp}</td>
+						<c:if test="${item.i_user == loginUser.i_user}">
+							<td>
 								<a href="cmt/del?i_board=${data.i_board}&typ=${param.typ}&i_cmt=${item.i_cmt}">
 									<button>삭제</button>
 								</a>
-								<button>수정</button>								
-							</c:if>
-						</td>
+								<button onclick="clkCmtMod(${item.i_cmt});">수정</button>								
+							</td>
+						</c:if>
 					</tr>
+					<c:if test="${item.i_user == loginUser.i_user}">
+						<tr	id="mod_${item.i_cmt}" class="cmd_mod_form">
+							<td	colspan="4">
+							 	<form action="cmt/mod" method="post">
+								 	<input type="hidden" name="typ" value="${param.typ}">	
+									<input type="hidden" name="i_board" value="${data.i_board}">
+									<input type="hidden" name="i_cmt" value="${item.i_cmt}">
+									<input type="text" name="ctnt" value="${item.ctnt}">
+									<input type="submit" value="수정">
+									<input type="button" value="닫기" onclick="clkCmtClose(${item.i_cmt});">				 							 		
+							 	</form>
+							</td>
+						</tr>
+					</c:if>
 				</c:forEach>
 			</table>
 			<a href="detail?i_board=${data.i_board}&typ=${data.typ}&showCmt=${showCmt + 10}"><button>댓글더보기</button></a>
 		</div>
 	</div>
+	<div id="favoriteContainer" is_favorite="${data.is_favorite}"
+		onclick="toggleFavorite(${data.i_board});">
+		<c:choose>
+			<c:when test="${data.is_favorite == 1}">
+				<i class="fas fa-heart"></i>
+			</c:when>
+			<c:otherwise>
+				<i class="far fa-heart"></i>
+			</c:otherwise>
+		</c:choose>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script>
 		function isDel(e){
 			var result = confirm('삭제하시겠습니까?');
@@ -85,3 +111,28 @@
 		</c:if>
 	</script>
 </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

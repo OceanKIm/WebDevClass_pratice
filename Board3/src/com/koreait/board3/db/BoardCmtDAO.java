@@ -48,5 +48,80 @@ public class BoardCmtDAO extends CommonDAO {
 		}
 		return list;
 	}
+	
+	// 댓글, 공감 - 비공감 값을 가져오기 위한 메서드
+	public static BoardCmtSEL selEmpUnemp(int i_cmt) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		BoardCmtSEL vo = new BoardCmtSEL();
+		
+		String sql = " select emp, unemp from t_board_cmt "
+				+ " where i_cmt = " + i_cmt;
+		
+		try {
+			con = DbUtils.getCon();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				vo.setEmp(rs.getInt("emp"));
+				vo.setUnemp(rs.getInt("unemp"));
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			DbUtils.close(con, ps, rs);
+		}
+		return vo;
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

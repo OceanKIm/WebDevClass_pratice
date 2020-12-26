@@ -29,6 +29,9 @@ public class BoardDetailSer extends HttpServlet {
 		case 1:
 			request.setAttribute("msg", "알 수 없는 에러가 발생하였습니다.");
 			break;
+		case 2:
+			request.setAttribute("msg", "최소 5자 이상 댓글을 작성하세요.");
+			break;	
 		}
 		BoardSEL vo = BoardService.detail(request);
 		request.setAttribute("jsList", new String[]{"board"});

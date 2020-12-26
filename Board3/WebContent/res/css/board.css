@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.cmd_mod_form {
+	display: none;
+}
+
+#favoriteContainer {
+	position: absolute;
+    right: 50px;
+    top: 70px;
+    color: #ff7675;
+    font-size: 30px;	
+}
+
+#favoriteContainer  i {
+	cursor: pointer;
+}
+
+.emp {
+	cursor: pointer;
+}
+
+.emp:hover {
+	color:blue;
+}
+
+

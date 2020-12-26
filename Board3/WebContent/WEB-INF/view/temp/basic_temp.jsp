@@ -6,11 +6,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>${title}</title>
-	<link rel="stylesheet" href="/res/css/common.css?ver=2">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<link rel="stylesheet" href="/res/css/common.css?ver=4">
+	<link rel="stylesheet" href="/res/css/board.css?ver=8">
 	<c:forEach items="${jsList}" var="item">
-		<script defer src="/res/js/${item}.js?ver=2"></script>
+		<script defer src="/res/js/${item}.js?ver=9"></script>
 	</c:forEach>
-	<script defer src="/res/js/common.js?ver=2"></script>
+	<script defer src="/res/js/common.js?ver=3"></script>
 </head>
 <body>
 	<div id="container">

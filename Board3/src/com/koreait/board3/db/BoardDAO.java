@@ -43,14 +43,22 @@ public class BoardDAO extends CommonDAO{
 		ResultSet rs = null;
 		BoardSEL vo = null;
 		
-		String sql = " select A.i_board, A.i_user, A.seq, A.title, A.ctnt, A.r_dt, A.m_dt, B.nm, A.hits "
-				+ " from t_board A, t_user B where A.i_user = B.i_user "
-				+ " and A.i_board = ? ";
-		
+		String sql = "select A.i_board, A.seq, A.title, A.ctnt, A.r_dt, A.m_dt, A.hits, A.i_user, B.nm ,"
+				+ " case when C.i_board is null then 0 else 1 end as is_favorite "
+				+ " from t_board A "
+				+ " inner join t_user B "
+				+ " on A.i_user = B.i_user "
+				+ " left join t_board_favorite C "
+				+ " on A.i_board = C.i_board "
+				+ " and C.i_user = ? "
+				+ " where A.i_board = ? "; 
+				
+
 		try {
 			con = DbUtils.getCon();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, p.getI_board());
+			ps.setInt(1, p.getI_user());
+			ps.setInt(2, p.getI_board());
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				vo = new BoardSEL();
@@ -63,6 +71,7 @@ public class BoardDAO extends CommonDAO{
 				vo.setM_dt(rs.getString("m_dt"));
 				vo.setNm(rs.getNString("nm"));
 				vo.setHits(rs.getInt("hits"));
+				vo.setIs_favorite(rs.getInt("is_favorite"));
 				return vo;
 			}
 		} catch (Exception e) {
