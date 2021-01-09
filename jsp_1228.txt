@@ -1,0 +1,46 @@
+// 공감 비공감 ajax처리 한거 한번 더 확인하기.
+
+// 오늘부터 자바스크립트.!!!!!!!
+
+// null 과 undefined에 대한 공부 - done
+
+// 자바스크립트는 prototype의 언어 -> 이에 대한 공부.
+// ES5 -> ES6 문법으로 넘어감. (이에 대한 공부를 해야함.)
+
+// 자바에서 가변인자 처리 방법 알아보기!.	--> 일단 나중에.
+https://sleepyeyes.tistory.com/29
+sum(1,2,3,4,5);
+
+// 자바스크립트 클로저 -> 공부해보기.
+// 자바스크립트 클로저, 은닉화.
+
+내일 공부
+// 1. 콜백함수
+// 2. for each, 리듀, 등.....
+
+// 오늘 무조건 공부하기.
+1. 프로토타입 개념 
+ - 클래스가 객체를 생성하는 것과 달리
+ - 객체 원형(프로토타입)의 형태를 복사해서 객체를 생성하는 방식이다.
+
+2. 콜백함수 - 거의 마스터
+ - 파라미터로 함수를 전달 받아, 함수 내부에서 실행하는 함수.
+https://velog.io/@minidoo/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%BD%9C%EB%B0%B1-%ED%95%A8%EC%88%98Callback-Function
+
+
+3. 프로미스
+https://joshua1988.github.io/web-development/javascript/promise-for-beginners/
+ 
+4. 비동기프로그래밍
+ - 특정 코드의 실행이 완료될 때까지 기다리지 않고 다음 코드를 먼저 수행하는 자바스크립트의 특성
+ (자바 자체에서 비동기 프로그래밍으로 구현되는 유형? 방식? 함수? 가 따로 있음, 일반적으로는 코드를 순차 실행 함.)
+ ex) ajax
+https://velog.io/@two_jay/callback-%EA%B3%BC-%EB%B9%84%EB%8F%99%EA%B8%B0-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D
+
+// more
+https://jinn-blog.tistory.com/87
+
+
+등, 관련 블로그 싹 찾아 볼것.
+
+그리고 냠냠자료 공부하기!

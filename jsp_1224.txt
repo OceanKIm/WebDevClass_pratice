@@ -1,0 +1,63 @@
+// 좋아요 기능 추가.
+-> 아작스 통신 이용
+https://github.com/axios/axios
+
+// 사용자 정의 attribut 사용 is_favorite=""
+function toggleFavorite() {
+	var fc = doucment.querySelector('#favoriteContainer');
+	console.log(fc.getAttribute('is_favorite'));	
+	var state = fc.getAttribute('is_favorite'); // 1: 좋아요, 0:안 좋아요
+	var state = 1 - state;	// 토글 적용.
+	
+	axios.get('/board/favorite', {
+		params: {
+			'state': state
+		}
+	});
+	
+}
+
+https://velog.io/@zofqofhtltm8015/Axios-%EC%82%AC%EC%9A%A9%EB%B2%95-%EC%84%9C%EB%B2%84-%ED%86%B5%EC%8B%A0-%ED%95%B4%EB%B3%B4%EA%B8%B0
+ -> ajax 통신 방식 (필수공부)
+// get : read, select
+// post : create, insert
+// put : update, update
+// delete : delete, delete
+
+
+// get 방식 보내는 방식 2가지
+
+// 아작스는 화면이 아닌 데이터를 return 해줌.
+// json 이란.
+
+// 이번에 게시판 끝나면 자바스크립트 들어감.
+// 콜백함수 
+	axios.get('/board/ajaxfavorite', {
+		params: {
+			'state':state,
+			'i_board':i_board
+		}
+	}).then (function(res) {	// 통신 성공
+		if(res.data.result == 1) {
+			var iconClass = state == 1?'fas':'far';
+			fc.innerHTML = `<i class="${iconClass} fa-heart"></i>`;
+			fc.setAttribute('is_favorite', state);
+		} else {
+			alert('에러가 발생하였습니다.');
+		}
+		console.log(res);
+	}).catch(function(err) {	// 통신 실패
+		console.log('err 발생 : ' + err);
+	}); 
+
+res : 객체를 담고 있음.
+ -> res.data.result = 1
+
+// innserHTML -> 기존의 html은 다 날아감. 
+
+
+// 비동기처리(promise)
+// prototype
+
+// golanguage -> 개꿀.
+// Python - tensorflow

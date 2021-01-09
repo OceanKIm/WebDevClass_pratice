@@ -1,0 +1,75 @@
+<중요>
+- 웹개발_java (2020.12.18 00:02 사망진단)
+- 앞으로 프로젝트는 학원 컴퓨터에서 다시 만들고 깃허브로 올릴 것.
+- 내일 학원가면 제일 먼저 웹개발_java_sub 프로젝트를 학원 컴퓨터로 이동 시킬 것. 
+- 아니면 강사님 git 프로젝트
+https://atoz-develop.tistory.com/entry/%EC%9D%B4%ED%81%B4%EB%A6%BD%EC%8A%A4%EC%97%90%EC%84%9C-%EA%B9%83%ED%97%88%EB%B8%8C-%EC%A0%80%EC%9E%A5%EC%86%8C-%EB%B3%B5%EC%A0%9C-%EB%B0%8F-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%9E%84%ED%8F%AC%ED%8A%B8%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95
+참조해서 땡겨오기.
+- 내일 학원 일찍 갈 것!
+
+ 결론 : 외장하드는 믿을 것이 못 된다, 앞으로 Git Hub를 적극적으로 활용하자. 반드시 
+1. 안전장치 제거 후 드라이브 꺼내기.
+2. 부팅 후 장치 삽입.
+
+
+// ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+// rs = ps.getGeneratedKeys();
+	if (rs.next()) {
+		param.setI_board(rs.getInt(1));	// param에 값 재 설정.
+	}
+--> sql update문에서 해당 쿼리 실행시 그 열의 '키'값을 가져올 수 있음.
+
+<회원가입 문제>
+// 아이디 중복 방지 에러 처리. -> 선생님은 에러 처리 안함.
+// java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'smart373' for key 'user_id'
+
+// 휴대폰번호 정규식 에러 처리. - 해결
+<script defer src="/res/js/join.js?ver=1"></script> -> 중요! js파일도 ver처리로 링크 연결 오류 해결
+
+// 세션호출
+HttpSession session = request.getSession();
+
+// 로그인 에러
+java.sql.SQLException: No value specified for parameter 1  -> 쿼리문 ? 에 값 설정 안해줘서.. ps.setInt...
+
+// js파일은 참조 됬는데 함수가 호출 안될 경우. 반드시 링크걸때 맨 앞에 / 붙여야함.
+// 맨앞에 / 붙였으면 무조건 풀경로를 다 적어줘야함.
+
+//'#' 키워드
+# -> 같은 페이지에 id값으로 이동 (단순 화면 이동)
+
+// 글삭제 -> 내가 쓴 글이면 나타나고, 내가 쓴글이 아니면 나타나지 않음!!
+<c:if test="${data.i_user == loginUser.i_user}">
+	<button onclick="idDel(${data.i_board});">글삭제</button>
+	<a href="bRegmod?typ=${data.typ}&i_board=${data.i_board}">
+		<button>글수정</button>
+	</a>
+</c:if>
+
+// js파일에 함수 네이밍을 조심해야함. 여러 js파일을 링크하면 같은 이름의 함수가 존재할 수 있음.
+
+// confirm('') -> 리턴값이 boolean 임. 예 아니오에 따라.
+
+// 이번에는 그냥 DB에 삭제, 원래는 DB에 안 지우고 삭제된 것처럼 꾸밈.
+
+// request.setAttribute("jsList", new String[]{"board"}); -> detailSer에도 해줘야 js파일 가져옴.
+
+// typ은 항상 basic_temp에서 출발하기 때문에
+// 나는 굳이 setAttribute로 주지 않고 param으로 typ를 이용한다.
+
+// 삭제 js
+function clkDel(i_board, typ) {
+	if(confirm('삭제 하시겠습니까?')) {
+		location.href = `del?i_board=${i_board}&typ=${typ}`;
+	}
+}
+
+// 삭제시 주의할 점.
+delete from t_board where i_board = ? AND i_user = ?
+i_user도 같이 검색해서 삭제해야함.
+i_board값은 해커가 쿼리스트링이나 심지어 post도 툴을 이용해서 값을 강제로 보내서 삭제시킬 수 있음
+하지만 session에 있는 i_user값은 해커가 절대가져올 수 없기 때문에 이 값을 이용해야함.
+
+
+
+
