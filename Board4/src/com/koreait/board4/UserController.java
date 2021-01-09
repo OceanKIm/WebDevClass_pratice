@@ -93,8 +93,21 @@ public class UserController {
 		}
 		response.sendRedirect("/board/list.korea");
 	}
+
+	public void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession hs = request.getSession();
+		hs.invalidate();
+		login(request, response);
+	}
+	
 	
 }
+
+
+
+
+
+
 
 
 

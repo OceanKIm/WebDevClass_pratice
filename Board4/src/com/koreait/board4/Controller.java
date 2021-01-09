@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.koreait.board4.common.SecurityUtils;
 import com.koreait.board4.common.Utils;
 import com.koreait.board4.db.CommonDAO;
 
@@ -30,7 +31,7 @@ public class Controller {
 			appliction.setAttribute("menus", CommonDAO.selManagerBoardList());
 		}
 		
-		// 1 단계
+		// 로그인이 필요 없는 영역
 		switch(urlArr[1]){
 		case "user": // 로그인 영역
 			// 2 단계
@@ -47,21 +48,32 @@ public class Controller {
 			case "joinProc.korea":
 				uCont.joinProc(request, response);
 				return;
+			case "logout.korea":
+				uCont.logout(request, response);
+				return;
 			}
 			break;
 		case "board": // 게시판 영역
 			switch (urlArr[2]) {
 			case "list.korea":
 				bCont.list(request, response);
-				break;
+				return;
 			}
 			break;
 		}
-		// 위의 nav 밖의 url이면 무조건 에러 페이지 이동.
-		goToErr(request, response);
 		
+		// 로그인이 필요한 영역
+		if (SecurityUtils.getLoginUserPk(request) > 0) {
+			switch (urlArr[1]) {
+			case "board":
+				switch (urlArr[2]) {
+				case "reg.korea":
+					bCont.reg(request, response);
+					return;
+				}
+				break;
+			}
+		}
+		goToErr(request, response);
 	}
-	
-	
-	
 }

@@ -26,7 +26,8 @@ public class SecurityUtils {
 	}
 	
 	public static int getLoginUserPk(HttpServletRequest request) {
-		return getLoginUser(request).getI_user();
+		UserModel loginUser = getLoginUser(request);
+		return loginUser == null ? 0 : loginUser.getI_user();
 	}
 
 	public static String getSecurePassword(String password, String salt) {

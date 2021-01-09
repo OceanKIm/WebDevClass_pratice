@@ -8,7 +8,7 @@
 			${data != null ? '글수정':'글등록'}
 		</h3>
 	</div>
-	<form action="regmod" method="post" id="frm">
+	<form action="/board/${param.i_board == null ? 'regProc.korea':'modProc.korea'}" method="post" id="frm">
 		<div>
 			<input type="hidden" name="typ" value="${param.typ}">	
 		</div>
