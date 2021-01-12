@@ -58,8 +58,11 @@ public class Controller {
 			case "list.korea":
 				bCont.list(request, response);
 				return;
-			}
-			break;
+			case "detail.korea":
+				bCont.detail(request, response);
+				return;
+			}	
+			break;	
 		}
 		
 		// 로그인이 필요한 영역
@@ -70,6 +73,12 @@ public class Controller {
 				case "reg.korea":
 					bCont.reg(request, response);
 					return;
+				case "regProc.korea":
+					bCont.regProc(request, response);
+					return;
+				case "modProc.korea":
+					bCont.modProc(request, response);	
+					return;
 				}
 				break;
 			}
@@ -77,3 +86,18 @@ public class Controller {
 		goToErr(request, response);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -35,7 +35,7 @@
 				<th>좋아요</th>				
 			</tr>
 			<c:forEach var="item" items="${data}">
-			<tr class="pointer" onclick="clkArticle(${param.typ},${item.i_board})">
+			<tr class="pointer" onclick="clkArticle(${param.typ == null ? 1 : param.typ},${item.i_board})">
 				<td>${item.seq}</td>
 				<td>${item.title}</td>
 				<td>${item.r_dt}</td>

@@ -18,12 +18,13 @@
 	</div>
 	<div>
 		<div>글번호 : ${data.seq}</div>
-		<div>작성자 : ${data.nm}</div>		
+		<div>작성자 : ${data.writer_nm}</div>		
 		<div>제목 : ${data.title}</div>
 		<div>내용 : ${data.ctnt}</div>
 		<div>작성일 : ${data.r_dt}</div>
 		<div>수정일 : ${data.m_dt}</div>
 		<div>조회수 : ${data.hits}</div>
+		<div>좋아요수 : ${data.favorite_cnt}</div>
 	</div>
 	<c:if test="${loginUser.i_user == data.i_user}">
 		<div>

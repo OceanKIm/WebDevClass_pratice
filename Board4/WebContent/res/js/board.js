@@ -1,7 +1,7 @@
 
 // 디테일 이동.
 function clkArticle(typ, i_board) {
-	var url = `detail?typ=${typ}&i_board=${i_board}`;
+	var url = `/board/detail.korea?typ=${typ}&i_board=${i_board}`;
 	location.href = url;
 }
 
