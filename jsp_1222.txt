@@ -1,0 +1,20 @@
+// ..로 상위 위치로 올라가는 것 가능!
+return String.format("../detail?typ=%s&i_board=%d", typ, i_board);
+
+// 댓글 뿌려주는 것은 BoardService detail에서 처리하기!.	-완료
+
+// 댓글 삭제. 내가 쓴 댓글은 내가 삭제하기! - 완료
+
+// 댓글 수정은 나중에!
+
+// DB에서 date format 설정하기.
+https://j07051.tistory.com/606
+ -> date_format(A.r_dt, '%y년%m월%d일 %H:%i') r_dt
+	-> 꼭 '포멧' 감싸기!
+
+// 댓글삭제 ser , get방식처리. - 완료
+
+// 실제로 i_user 안주고 삭제시키는 해킹 실습..
+
+// <연습보드>
+// i_board이든 typ든 실제로는 전부 String으로 처리 가능...

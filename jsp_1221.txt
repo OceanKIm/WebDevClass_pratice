@@ -1,0 +1,73 @@
+// session의 값은 jsp파일 모든 곳에 접근 가능하다.?? 단, 브라우져가 열려있는 한 이 아니라.
+// tempelet에서 참조하고 있으니까??
+
+// request를 통해 session과 appliction을 호출할 수 있음.
+ - request.getServletContext();
+
+https://github.com/sbsteacher/2020WebDevClass_board3/blob/main/board3/src/com/koreait/board3/common/SecurityUtils.java
+
+// Utils.forwardTemp("메인", "temp/basic_temp", "board/bList", request, response); 
+ -> 오직 이 메소드로 jsp를 출력한다. 헷갈리지 말지.
+
+// insert board의 sql 쿼리문에서 where typ = ? 이거 왜들어감? -> 안적어줘도 상관 없슴.
+ 근데.. 혹시 몰라? 썜한테 물어보자.
+
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '2-5' for key 'typ' -> 에러.. seq에 +1 안해줌 ㅋㅋ
+ -> 그래도 일단 글이 등록 됨. 
+
+serialVersionUID -> 요고 뭔지 공부하기.
+
+// 글삭제에는 i_board 값만 있음 되지 않나? thats no, no!!! 삭제를 한 후 해당 게시판으로 다시 이동해줘야함!
+function clkDel(i_board, typ) {
+	if(confirm('삭제 하시겠습니까?')) {
+		location.href = `bDel?i_board=${i_board}&typ=${typ}`;
+	}
+}
+ -> 여기서 confirm('')의 역할 정도만 잘 알아두기!
+
+// <연습보드에서 연습 하기.>
+1. 수정 - 완료
+2. 조회수 - 완료
+ - 아이디 별로 중복 처리.
+ - 나는 아이디를 키, i_board를 값으로  appliction에 등록해서 처리 했음. 굳.
+3. 페이징 - 완료
+4. 댓글 - 완료
+
+ServletContext appliction = request.getServletContext(); -> 어플리케이션 객체 호출.
+
+// 깃허브에 프로젝트 안올라갈 때 해결 방법.
+https://smujihoon.tistory.com/74
+
+// 글수정 시작!
+// BoardDAO가 CommonDAO를 상속받았기에 myExecuteQuery 사용 가능.
+
+String sql = " update t_board "
+	+ " set title = ?, ctnt = ?, m_dt = now() "
+	+ " where i_board = ? and i_user = ? ";
+ -> 글수정에도 i_user 값을 줘야지 장난질을 못함.
+
+// regmod return typ을 String으로!
+
+// 조회수, 페이징 넘고 댓글?
+
+// 댓글 테이블 구조
+CREATE TABLE t_board_cmt (
+i_cmt INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+i_board INT(10) UNSIGNED not NULL,
+i_user INT UNSIGNED,
+ctnt VARCHAR(200) NOT NULL,
+r_dt DATETIME DEFAULT NOW(),
+m_dt DATETIME DEFAULT NOW(),
+PRIMARY KEY (i_cmt),
+FOREIGN KEY (i_board) REFERENCES t_board(i_board),
+FOREIGN KEY (i_user) REFERENCES t_user(i_user)
+);
+
+// 댓글 페키지, 2단계 까지 들어감.
+// cmtDAO
+// cmtModel
+// cmtSEL
+ -> param은 안 만듬.
+
+DB 연결 성공!
+java.sql.SQLSyntaxErrorException: Unknown column 'i_baord' in 'where clause' <- 여기 에러에서 멈춤, 이후 학원에서 해결하기!

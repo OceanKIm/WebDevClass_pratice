@@ -1,0 +1,48 @@
+// 오늘은 댓글 수정!
+	-> 댓글 수정 누르면  맨~ 밑에 수정창 뜨게 하기! -> 나중버전
+	-> 이번에는 그냥 밑에 수정창 뜨게 하기.
+
+// service나 dao에서 메소드 순서는 항상 -> CRUD 순으로!!! (중요)
+
+// 수정 창 숨기는 방법
+1. display;none; -> 실제로 공간 차지 안함.
+2. visibility:hidden; -> 실제로 공간 차지.
+
+// 댓글 수정 다 하면 ajax로 댓글 좋아요 기능 구현하기!
+
+// 캐시문제해결
+1. 웹 f12 소스에 js파일 코드 확인
+2. 설정 disable cash 설정
+
+// botton은 기본 타입이 submit이기 때문에 form이 그대로 날라감.
+
+// 좋아요 기능 추가
+어썸폰트사용
+https://fontawesome.com/
+https://fontawesome.com/how-to-use/customizing-wordpress/snippets/setup-cdn-webfont
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+// 하트위치 css 먹이기 
+-> 진짜 css는 따로 공부하자..
+
+// 사용자와 게시글 사이에 좋아요 기능은 다대다 관계. m:m
+  따라서 무조건 제 3의 테이블이 필요함.
+
+-> 좋아요 테이블의 pk는 i_board + i_user
+
+CREATE TABLE t_board_favorite(
+	i_board INT UNSIGNED,
+	i_user INT UNSIGNED,
+	r_dt DATETIME DEFAULT NOW(),
+	PRIMARY KEY (i_board, i_user),
+	FOREIGN KEY (i_board) REFERENCES t_board(i_board),
+	FOREIGN KEY (i_user) REFERENCES t_board(i_user),
+); 
+
+// 집에서 DB구분해서 좋아요 띄우는거 연습하기
+left join을 활용해야함.
+
+// 연습보드에서 추가 기능 구현할 것.
+1. 일정 글자수 이상 적어야 댓글 달아짐!
+2. 좋아요 기능 미리 구현해보기.
+3. 댓글 페이징은 나중에 ajax로 구현 할 예정.

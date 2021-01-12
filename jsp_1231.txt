@@ -1,0 +1,30 @@
+// 자료 메일로 보내기. 맥북으로 구미집에서 공부!!
+
+// 아작스 사용시.
+1. xmlhttprequset // 옛날꺼. 안 좋음
+2. javascript fetch -> 그나마 나음.
+3. axios // 좋음.
+https://github.com/axios/axios
+-> 사용방법 익히기. (get, post 등..)
+
+// json 응답, 연습 용 사이트.
+https://mocki.io/fake-json-api
+
+// status: 200 -> 통신이 잘되면 status에서 200이 반환
+// ex) 404 -> 에러.
+// data: 값이 담김. 
+-> json이 []로 시작하면 무조건 배열.!!
+-> 값이 하나면 object 가 담김.
+
+DB -> 한줄 레코드, 컬럼명, 용어 기억.
+
+// append, preppend -> 차이점 공부.
+// innerText -> 태그안에 그냥 문자열 삽입
+
+// axios 이미지 뿌리기 연습
+// 이미지 json 연습 사이트. (get 방식, 주솟값으로 보내야함.)
+https://picsum.photos/
+
+// id 속성을 주는 순간. window객체안에 widow.id로 이미 생성되어 버림.
+
+// 1월 4일부터 정상 시간 . 7시 ~ 10시

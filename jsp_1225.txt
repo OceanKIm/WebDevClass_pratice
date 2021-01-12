@@ -1,0 +1,42 @@
+// 반드시!! ajax 통신 예제 (좋아요) 다시 한번 복습!!!!!
+
+// json 문법 : key:value
+{"key":value}
+
+<axios 통신>
+-> function res 
+{data: {…}, status: 200, statusText: "", headers: {…}, config: {…}, …}
+config: {url: "/board/ajaxfavorite", method: "get", headers: {…}, params: {…}, transformRequest: Array(1), …}
+data: {result: 1}
+headers: {connection: "keep-alive", content-length: "12", content-type: "appliction/json;charset=UTF-8", date: "Fri, 25 Dec 2020 07:08:34 GMT", keep-alive: "timeout=20"}
+request: XMLHttpRequest {readyState: 4, timeout: 0, withCredentials: false, upload: XMLHttpRequestUpload, onreadystatechange: ƒ, …}
+status: 200
+statusText: ""
+__proto__: Object
+
+// 연습보드 처리목록
+1. 댓글 공감 비공감 처리. (아작스 통신, 아이디로 구분)
+	-> 아작스 통신 성공, DB에서 중복 처리. - 완료
+	-> 공감, 비공감 토글 처리. - 완료
+
+// 댓글 문제.
+	1. 공감 비공감 데이터를 DB로 다시 가져와서 ajax로 수정시켜줘야함. -> 해결
+	2. 다른 사람 id 댓글에 공감 비공감 DB에 처리 오류. -> 해결.
+
+// 댓글 공감 비공감 처리
+ - 로그인 세션으로 중복 방지 처리. -> appliction에 key와 value로 구분
+ - 공감, 공감 취소 구현
+ - 공감 -> 비공감, 비공감 -> 공감 토글 처리.
+
+2. 댓글 페이징 (아작스 통신)
+	-> 이거 할려면 댓글 전체를 ajax 태그로 묶어야 함.
+	-> 페이징은 그냥 기존으로 처리 아작스 x 불가능
+
+3. 댓글 순공감순 정렬 기능추가.
+	
+4. 게시판 글 검색. -> 간단하게 DB select 이용.
+ - get방식으로 검색 (선택)
+ - post방식으로 검색
+
+	-> ~ 검색 결과 리스트.jsp 로 이동 처리.
+
